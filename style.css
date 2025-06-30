@@ -360,6 +360,24 @@ body {
   color: #ffb347;
 }
 
+.back-to-login {
+  color: #888;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  transition: color 0.2s;
+  display: block;
+  margin-top: 16px;
+}
+
+.back-to-login:hover {
+  color: #ffb347;
+}
+
+#forgot-password-form button[type="submit"] {
+  margin-bottom: 0;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 900px) {
   .container {
