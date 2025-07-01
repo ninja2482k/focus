@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <img src="compontes/logoicon.png" alt="Logo" class="logo dashboard-logo">
+                <span class="welcome">Welcome back</span>
+            </div>
+            <div class="navbar-right">
+                <span class="level">level <span class="level-number">5</span></span>
+                <span class="settings-icon" title="Settings">
+                  <img src="compontes/settings.png" alt="Settings" class="settings-img">
+                </span>
+                <img src="compontes/github.png" alt="Profile" class="profile dashboard-profile">
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="top-section">
+                <section class="task-section">
+                    <div class="task-section-header">
+                        <button class="add-task">Add Task</button>
+                        <div class="star-rating">&#9733;&#9733;&#9733; Streak</div>
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item"><label><input type="checkbox" checked> Finish dashboard UI</label></li>
+                        <li class="task-item"><label><input type="checkbox" checked> Add authentication</label></li>
+                        <li class="task-item"><label><input type="checkbox" checked> Polish styles</label></li>
+                        <li class="task-item"><label><input type="checkbox"> Demo Task: Connect backend</label></li>
+                    </ul>
+                </section>
+            </div>
+            <section class="contribution-graph">
+                <div class="graph-labels">
+                    <div class="days">
+                        <span>Mon</span>
+                        <span>Wed</span>
+                        <span>Fri</span>
+                    </div>
+                    <div class="months">
+                        <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                    </div>
+                </div>
+                <div class="heatmap-grid stretch-heatmap">
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell active"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                    <div class="heatmap-row">
+                        <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+                    </div>
+                </div>
+                <div class="graph-legend">
+                    <span>Less</span>
+                    <span class="legend-cell"></span><span class="legend-cell active"></span><span class="legend-cell active2"></span><span class="legend-cell active3"></span><span class="legend-cell active4"></span>
+                    <span>More</span>
+                </div>
+                <div class="graph-footer">
+                    <span>Learn how we count contributions</span>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html> 
