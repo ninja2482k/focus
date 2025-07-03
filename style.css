@@ -567,75 +567,119 @@ body {
 }
 
 .contribution-graph {
-  background: #181a1b;
-  border-radius: 10px;
-  padding: 32px 24px 16px 24px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  border: 1.5px solid #292929;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
+background: #181a1b;
+border-radius: 10px;
+padding: 40px 24px 32px 24px;
+color: #fff;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+border: 1.5px solid #292929;
+max-width: 1400px;
+width: 100%;
+margin: 0 auto 32px auto;
+display: flex;
+flex-direction: column;
+align-items: stretch;
 }
 
-.graph-labels {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 24px;
-  margin-bottom: 8px;
+.months-row {
+display: grid;
+grid-template-columns: repeat(53, 1fr);
+margin-left: 0; /* Remove extra margin, align with grid */
+gap: 2px;
+margin-bottom: 4px;
+justify-content: flex-start;
 }
 
-.days {
+.month-label {
+width: 100%;
+min-width: 0;
+text-align: center;
+font-size: 10px;
+color: #bdbdbd;
+display: block;
+}
+
+.heatmap-body {
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: flex-start;
+width: 100%;
+position: relative;
+}
+
+.days-column {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  margin-right: 8px;
+  width: 40px;
+  box-sizing: border-box;
+  align-items: stretch;
+font-size: 10px;
+color: #bdbdbd;
+}
+
+.day-label {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  font-size: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 10px;
   color: #bdbdbd;
-  min-width: 32px;
-}
-
-.months {
-  display: flex;
-  flex-direction: row;
-  gap: 44px;
-  font-size: 1rem;
-  color: #bdbdbd;
-  margin-left: 12px;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding-right: 2px;
 }
 
 .heatmap-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-left: 0;
-  width: 100%;
+display: grid;
+grid-template-columns: repeat(53, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+gap: 2px;
+width: 100%;
+  height: 100%;
+min-width: 0;
+  min-height: 0;
 }
 
-.heatmap-row {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  width: 100%;
+.heatmap-col {
+  display: contents;
 }
 
 .cell {
-  width: 32px;
-  height: 24px;
-  background: #222;
-  border-radius: 2px;
-  margin: 0;
-  display: inline-block;
-  flex: 1 1 0;
-  min-width: 24px;
+width: 100%;
+height: 100%;
+aspect-ratio: 1 / 1;
+max-width: 20px;
+max-height: 20px;
+border-radius: 2px;
+background: #161b22;
+transition: background 0.2s;
+display: block;
 }
 
-.cell.active {
-  background: #39d353;
+.cell.level-0 { background: #161b22; }
+.cell.level-1 { background: #9be9a8; }
+.cell.level-2 { background: #40c463; }
+.cell.level-3 { background: #30a14e; }
+.cell.level-4 { background: #216e39; }
+
+.cell:hover {
+  outline: 2px solid #fff;
+  z-index: 1;
+  position: relative;
+}
+
+.graph-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: #bdbdbd;
+  margin: 8px 0 0 0;
+  margin-left: 32px;
+  justify-content: flex-start;
 }
 
 .legend-cell {
@@ -647,30 +691,10 @@ body {
   margin: 0 4px;
 }
 
-.legend-cell.active {
-  background: #39d353;
-}
-
-.legend-cell.active2 {
-  background: #26a641;
-}
-
-.legend-cell.active3 {
-  background: #006d32;
-}
-
-.legend-cell.active4 {
-  background: #003820;
-}
-
-.graph-legend {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.95rem;
-  color: #bdbdbd;
-  margin: 8px 0 0 0;
-}
+.legend-cell.active { background: #39d353; }
+.legend-cell.active2 { background: #26a641; }
+.legend-cell.active3 { background: #006d32; }
+.legend-cell.active4 { background: #003820; }
 
 .graph-footer {
   color: #bdbdbd;
