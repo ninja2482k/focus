@@ -148,4 +148,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     quoteEl.textContent = quotes[randomIndex];
   }
+
+  // --- Prevent default form submission for all forms ---
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Login form submitted (demo only).');
+    });
+  }
+
+  const signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Signup form submitted (demo only).');
+    });
+  }
+
+  const forgotForm = document.getElementById('forgot-password-form');
+  if (forgotForm) {
+    forgotForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Password reset link sent (demo only).');
+    });
+  }
+
+  const resetForm = document.getElementById('reset-password-form');
+  if (resetForm) {
+    resetForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = resetForm.querySelectorAll('input[type="password"]');
+      if (inputs.length >= 2) {
+        const pw1 = inputs[0].value;
+        const pw2 = inputs[1].value;
+        if (pw1 !== pw2) {
+          alert('Passwords do not match.');
+          return;
+        }
+      }
+      alert('Password reset successful (demo only).');
+    });
+  }
 });
