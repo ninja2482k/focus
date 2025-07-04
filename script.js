@@ -123,3 +123,22 @@ signupToggle.addEventListener('click', () => {
   heatmap.innerHTML = '';
   heatmap.appendChild(heatmapBody);
 })();
+
+// --- Motivation Quote Randomizer ---
+document.addEventListener('DOMContentLoaded', function() {
+  const quotes = [
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+    "The only way to do great work is to love what you do. – Steve Jobs",
+    "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+    "Believe you can and you’re halfway there. – Theodore Roosevelt",
+    "It always seems impossible until it’s done. – Nelson Mandela",
+    "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
+    "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
+    "Dream big and dare to fail. – Norman Vaughan"
+  ];
+  const quoteEl = document.getElementById('motivation-quote');
+  if (quoteEl) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteEl.textContent = quotes[randomIndex];
+  }
+});

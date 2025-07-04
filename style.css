@@ -727,3 +727,24 @@ display: block;
   font-size: 10px;
   color: #bdbdbd;
 }
+
+.dashboard-footer {
+    width: 100%;
+    text-align: center;
+    padding: 24px 0 16px 0;
+    position: static;
+    left: unset;
+    bottom: unset;
+    font-size: 1.05rem;
+    color: #ffb347;
+    box-shadow: none;
+    border-top: 2px solid #5e6266;
+    margin-top: 40px;
+}
+.motivation-quote {
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+    color: #ffb347;
+    letter-spacing: 0.01em;
+}
