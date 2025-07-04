@@ -10,9 +10,9 @@ body {
 
 /* ===== LOGO STYLES ===== */
 .logo {
-  position: fixed;
-  top: 20px;
-  left: 20px;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 20px;
   z-index: 1000;
 }
 
