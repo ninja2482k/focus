@@ -1,33 +1,28 @@
-// Toggle between Login and Signup forms
-const loginToggle = document.getElementById('login-toggle');
-const signupToggle = document.getElementById('signup-toggle');
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-const formToggle = document.querySelector('.form-toggle');
+// Only run login/signup toggle code on index.html
+if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+  const loginToggle = document.getElementById('login-toggle');
+  const signupToggle = document.getElementById('signup-toggle');
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const formToggle = document.querySelector('.form-toggle');
 
-if (loginToggle && signupToggle && loginForm && signupForm && formToggle) {
-  loginToggle.addEventListener('click', () => {
-    loginToggle.classList.add('active');
-    signupToggle.classList.remove('active');
-    loginForm.classList.remove('hidden');
-    signupForm.classList.add('hidden');
-    formToggle.classList.remove('signup-active');
-  });
+  if (loginToggle && signupToggle && loginForm && signupForm && formToggle) {
+    loginToggle.addEventListener('click', () => {
+      loginToggle.classList.add('active');
+      signupToggle.classList.remove('active');
+      loginForm.classList.remove('hidden');
+      signupForm.classList.add('hidden');
+      formToggle.classList.remove('signup-active');
+    });
 
-  signupToggle.addEventListener('click', () => {
-    signupToggle.classList.add('active');
-    loginToggle.classList.remove('active');
-    signupForm.classList.remove('hidden');
-    loginForm.classList.add('hidden');
-    formToggle.classList.add('signup-active');
-  });
-} else {
-  // Error handling for missing DOM elements
-  if (!loginToggle) console.warn('Login toggle button not found.');
-  if (!signupToggle) console.warn('Signup toggle button not found.');
-  if (!loginForm) console.warn('Login form not found.');
-  if (!signupForm) console.warn('Signup form not found.');
-  if (!formToggle) console.warn('Form toggle container not found.');
+    signupToggle.addEventListener('click', () => {
+      signupToggle.classList.add('active');
+      loginToggle.classList.remove('active');
+      signupForm.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+      formToggle.classList.add('signup-active');
+    });
+  }
 }
 
 // --- GitHub-style Heatmap Generation ---
