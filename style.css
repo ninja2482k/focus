@@ -15,7 +15,14 @@ body {
   margin-left: 20px;
   z-index: 1000;
 }
-
+.dashboard-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  background: none;
+  position: static;
+  margin: 0;
+}
 .logo img {
   height: 60px;
   object-fit: contain;
