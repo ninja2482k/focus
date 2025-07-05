@@ -185,4 +185,94 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('Password reset successful (demo only).');
     });
   }
+
+  // --- Settings Page Functionality ---
+  const masterVolumeSlider = document.getElementById('master-volume');
+  const volumeValue = document.querySelector('.volume-value');
+  
+  if (masterVolumeSlider && volumeValue) {
+    // Update volume display when slider changes
+    masterVolumeSlider.addEventListener('input', function() {
+      volumeValue.textContent = this.value + '%';
+    });
+    
+    // Initialize volume display
+    volumeValue.textContent = masterVolumeSlider.value + '%';
+  }
+
+  // Settings sidebar navigation
+  const navItems = document.querySelectorAll('.nav-item');
+  const settingsPanels = document.querySelectorAll('.settings-panel');
+  
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all nav items and panels
+      navItems.forEach(nav => nav.classList.remove('active'));
+      settingsPanels.forEach(panel => panel.classList.remove('active'));
+      
+      // Add active class to clicked nav item
+      this.classList.add('active');
+      
+      // Show corresponding panel
+      const targetSection = this.getAttribute('data-section');
+      const targetPanel = document.getElementById(targetSection);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    });
+  });
+
+  // Settings form handling
+  const settingsForm = document.querySelector('.settings-content');
+  if (settingsForm) {
+    const saveButton = settingsForm.querySelector('.btn-primary');
+    const cancelButton = settingsForm.querySelector('.btn-secondary');
+    
+    if (saveButton) {
+      saveButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Settings saved successfully!');
+      });
+    }
+    
+    if (cancelButton) {
+      cancelButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Reset form to original values
+        const inputs = settingsForm.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+          if (input.type === 'checkbox') {
+            input.checked = input.defaultChecked;
+          } else {
+            input.value = input.defaultValue;
+          }
+        });
+        alert('Changes cancelled.');
+      });
+    }
+
+    // Handle danger buttons
+    const deleteButton = settingsForm.querySelector('.btn-danger');
+    if (deleteButton) {
+      deleteButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+          alert('Account deletion requested (demo only).');
+        }
+      });
+    }
+
+    // Handle export buttons
+    const exportButtons = settingsForm.querySelectorAll('.btn-secondary');
+    exportButtons.forEach(button => {
+      if (button.textContent.includes('Export')) {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Export functionality (demo only).');
+        });
+      }
+    });
+  }
 });

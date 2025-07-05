@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Focus Me</title>
+    <link rel="icon" type="image/png" href="components/logoicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="settings-page">
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <img src="components/logoicon.png" alt="Logo" class="logo dashboard-logo">
+                <span class="welcome">Settings</span>
+            </div>
+            <div class="navbar-right">
+                <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <div class="settings-layout">
+                <!-- Sidebar Navigation -->
+                <div class="settings-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Settings</h3>
+                        <ul class="settings-nav">
+                            <li><a href="#profile" class="nav-item active" data-section="profile">
+                                <span class="nav-icon">👤</span>
+                                Profile
+                            </a></li>
+                            <li><a href="#notifications" class="nav-item" data-section="notifications">
+                                <span class="nav-icon">🔔</span>
+                                Notifications
+                            </a></li>
+                            <li><a href="#custom-goals" class="nav-item" data-section="custom-goals">
+                                <span class="nav-icon">🎯</span>
+                                Custom Goals
+                            </a></li>
+                            <li><a href="#personal-stats" class="nav-item" data-section="personal-stats">
+                                <span class="nav-icon">📊</span>
+                                Personal Stats
+                            </a></li>
+                            <li><a href="#theme-ui" class="nav-item" data-section="theme-ui">
+                                <span class="nav-icon">🎨</span>
+                                Theme / UI
+                            </a></li>
+                            <li><a href="#sound-music" class="nav-item" data-section="sound-music">
+                                <span class="nav-icon">🔊</span>
+                                Sound / Music
+                            </a></li>
+                            <li><a href="#privacy-security" class="nav-item" data-section="privacy-security">
+                                <span class="nav-icon">🔒</span>
+                                Privacy & Security
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Settings Content Area -->
+                <div class="settings-content">
+                    <!-- Profile Section -->
+                    <div id="profile" class="settings-panel active">
+                        <h2>Profile</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" value="JohnDoe" class="settings-input">
+                            </div>
+                            <div class="setting-item">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="john@example.com" class="settings-input">
+                            </div>
+                            <div class="setting-item">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" class="settings-input" rows="3" placeholder="Tell us about yourself...">Productivity enthusiast and goal achiever</textarea>
+                            </div>
+                            <div class="setting-item">
+                                <label for="timezone">Timezone</label>
+                                <select id="timezone" class="settings-input">
+                                    <option value="UTC-8">Pacific Time (UTC-8)</option>
+                                    <option value="UTC-5">Eastern Time (UTC-5)</option>
+                                    <option value="UTC+0">UTC</option>
+                                    <option value="UTC+1">Central European Time (UTC+1)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div id="notifications" class="settings-panel">
+                        <h2>Notifications</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Email notifications
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Daily reminders
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Weekly progress reports
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Goal achievement alerts
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Streak break notifications
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label for="notification-time">Daily Reminder Time</label>
+                                <input type="time" id="notification-time" value="09:00" class="settings-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Goals Section -->
+                    <div id="custom-goals" class="settings-panel">
+                        <h2>Custom Goals</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <label for="daily-goal">Daily Focus Goal (hours)</label>
+                                <input type="number" id="daily-goal" value="6" min="1" max="12" class="settings-input">
+                            </div>
+                            <div class="setting-item">
+                                <label for="weekly-goal">Weekly Tasks Goal</label>
+                                <input type="number" id="weekly-goal" value="25" min="1" max="100" class="settings-input">
+                            </div>
+                            <div class="setting-item">
+                                <label for="streak-goal">Streak Goal (days)</label>
+                                <input type="number" id="streak-goal" value="30" min="1" max="365" class="settings-input">
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Enable goal reminders
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Stats Section -->
+                    <div id="personal-stats" class="settings-panel">
+                        <h2>Personal Stats</h2>
+                        <div class="settings-section">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">127</div>
+                                    <div class="stat-label">Total Focus Hours</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">45</div>
+                                    <div class="stat-label">Tasks Completed</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Current Streak</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">85%</div>
+                                    <div class="stat-label">Success Rate</div>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn-secondary">Export Stats</button>
+                                <button class="btn-secondary">Reset Stats</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme/UI Section -->
+                    <div id="theme-ui" class="settings-panel">
+                        <h2>Theme / UI</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <label for="theme">Theme</label>
+                                <select id="theme" class="settings-input">
+                                    <option value="light">Light</option>
+                                    <option value="dark" selected>Dark</option>
+                                    <option value="auto">Auto</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label for="accent-color">Accent Color</label>
+                                <select id="accent-color" class="settings-input">
+                                    <option value="orange" selected>Orange</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="green">Green</option>
+                                    <option value="purple">Purple</option>
+                                    <option value="pink">Pink</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label for="language">Language</label>
+                                <select id="language" class="settings-input">
+                                    <option value="en">English</option>
+                                    <option value="es">Español</option>
+                                    <option value="fr">Français</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Show animations
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Compact mode
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sound/Music Section -->
+                    <div id="sound-music" class="settings-panel">
+                        <h2>Sound / Music</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <label for="master-volume">Master Volume</label>
+                                <input type="range" id="master-volume" min="0" max="100" value="70" class="settings-slider">
+                                <span class="volume-value">70%</span>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Enable focus music
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label for="music-genre">Preferred Music Genre</label>
+                                <select id="music-genre" class="settings-input">
+                                    <option value="ambient">Ambient</option>
+                                    <option value="classical" selected>Classical</option>
+                                    <option value="nature">Nature Sounds</option>
+                                    <option value="lofi">Lo-Fi</option>
+                                    <option value="white-noise">White Noise</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Task completion sounds
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Break time alerts
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label for="break-sound">Break Sound</label>
+                                <select id="break-sound" class="settings-input">
+                                    <option value="gentle">Gentle Chime</option>
+                                    <option value="bell" selected>Bell</option>
+                                    <option value="notification">Notification</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Security Section -->
+                    <div id="privacy-security" class="settings-panel">
+                        <h2>Privacy & Security</h2>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <button class="btn-secondary">Change Password</button>
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn-secondary">Two-Factor Authentication</button>
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn-secondary">Export Data</button>
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn-danger">Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="settings-actions">
+                        <button class="btn-primary">Save Changes</button>
+                        <button class="btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
