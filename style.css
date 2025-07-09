@@ -426,7 +426,7 @@ body.settings-page {
   text-align: center;
 }
 
-/* ===== DASHBOARD STYLES ===== */  
+/* ===== DASHBOARD LAYOUT & NAVBAR ===== */
 .dashboard-container,
 .main-content {
   max-width: none !important;
@@ -435,6 +435,7 @@ body.settings-page {
   padding: 0 !important;
 }
 
+/* Navigation bar at the top of the dashboard */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -445,12 +446,14 @@ body.settings-page {
   border-bottom: 1px solid #444;
 }
 
+/* Left side of navbar: logo and welcome */
 .navbar-left {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
+/* Dashboard logo image */
 .logo.dashboard-logo {
   width: 44px;
   height: 44px;
@@ -459,24 +462,28 @@ body.settings-page {
   position: static;
 }
 
+/* Welcome text in navbar */
 .welcome {
   font-size: 1.4rem;
   font-weight: 600;
   color: #f4f4f4;
 }
 
+/* Right side of navbar: level, settings, profile */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
+/* User level display */
 .level {
   color: #ffb347;
   font-weight: 600;
   font-size: 1.1rem;
 }
 
+/* Settings icon in navbar */
 .settings-icon {
   font-size: 0;
   color: #ffb347;
@@ -490,12 +497,14 @@ body.settings-page {
   border-radius: 8px;
 }
 
+/* Settings icon hover effect */
 .settings-icon:hover {
   color: #ffd580;
   background: rgba(255, 179, 71, 0.1);
   transform: scale(1.05);
 }
 
+/* Profile image in navbar */
 .profile.dashboard-profile {
   width: 40px;
   height: 40px;
@@ -504,6 +513,8 @@ body.settings-page {
   border: 2px solid #ffb347;
 }
 
+/* ===== MAIN CONTENT & TASKS ===== */
+/* Main content area of dashboard */
 .main-content {
   flex: 1;
   display: flex;
@@ -514,6 +525,7 @@ body.settings-page {
   margin: 40px auto 0 auto;
 }
 
+/* Add Task button styles */
 .add-task {
   background: #ffb347;
   color: #23242b;
@@ -529,17 +541,20 @@ body.settings-page {
   margin-bottom: 0;
 }
 
+/* Add Task button hover effect */
 .add-task:hover {
   background: #ffd580;
   color: #181a1b;
 }
 
+/* Top section containing tasks */
 .top-section {
   display: block;
   margin-bottom: 32px;
   margin-top: 32px;
 }
 
+/* Header for task section */
 .task-section-header {
   display: flex;
   flex-direction: row;
@@ -549,6 +564,7 @@ body.settings-page {
   margin-bottom: 12px;
 }
 
+/* Streak/star rating display */
 .star-rating {
   font-size: 1.1rem;
   color: #ffb347;
@@ -567,6 +583,8 @@ body.settings-page {
   margin-left: 0;
 }
 
+/* ===== TASK LIST ===== */
+
 .task-list {
   list-style: none;
   padding: 0;
@@ -576,6 +594,7 @@ body.settings-page {
   gap: 16px;
 }
 
+/* Task label styles */
 .task-item label {
   font-size: 1.1rem;
   color: #f4f4f4;
@@ -584,12 +603,14 @@ body.settings-page {
   gap: 10px;
 }
 
+/* Checkbox for tasks */
 .task-item input[type="checkbox"] {
   accent-color: #ffb347;
   width: 18px;
   height: 18px;
 }
 
+/* ===== CONTRIBUTION GRAPH ===== */
 .contribution-graph {
 background: #181a1b;
 border-radius: 10px;
@@ -605,6 +626,7 @@ flex-direction: column;
 align-items: stretch;
 }
 
+/* Row of month labels above heatmap */
 .months-row {
 display: grid;
 grid-template-columns: repeat(53, 1fr);
@@ -614,6 +636,7 @@ margin-bottom: 4px;
 justify-content: flex-start;
 }
 
+/* Month label in graph */
 .month-label {
 width: 100%;
 min-width: 0;
@@ -623,6 +646,7 @@ color: #bdbdbd;
 display: block;
 }
 
+/* Heatmap grid body */
 .heatmap-body {
 display: flex;
 flex-direction: row;
@@ -632,16 +656,19 @@ width: 100%;
 position: relative;
 }
 
+/* Column for each day in heatmap */
 .days-column {
   display: flex;
   flex-direction: column;
   gap: 0px;
 }
 
+/* Day label in heatmap */
 .day-label {
   margin-bottom: 0;
 }
 
+/* Heatmap grid container */
 .heatmap-grid {
 display: grid;
 grid-template-columns: repeat(53, 1fr);
@@ -653,10 +680,12 @@ min-width: 0;
   min-height: 0;
 }
 
+/* Individual heatmap column */
 .heatmap-col {
   display: contents;
 }
 
+/* Individual cell in heatmap */
 .cell {
 width: 100%;
 height: 100%;
@@ -669,18 +698,21 @@ transition: background 0.2s;
 display: block;
 }
 
+/* Cell color levels for activity */
 .cell.level-0 { background: #161b22; }
 .cell.level-1 { background: #9be9a8; }
 .cell.level-2 { background: #40c463; }
 .cell.level-3 { background: #30a14e; }
 .cell.level-4 { background: #216e39; }
 
+/* Cell hover effect */
 .cell:hover {
   outline: 2px solid #fff;
   z-index: 1;
   position: relative;
 }
 
+/* Graph legend below heatmap */
 .graph-legend {
   display: flex;
   align-items: center;
@@ -692,6 +724,7 @@ display: block;
   justify-content: flex-start;
 }
 
+/* Legend color cells */
 .legend-cell {
   display: inline-block;
   width: 32px;
@@ -706,6 +739,7 @@ display: block;
 .legend-cell.active3 { background: #006d32; }
 .legend-cell.active4 { background: #003820; }
 
+/* Graph footer text */
 .graph-footer {
   color: #bdbdbd;
   font-size: 1rem;
@@ -713,6 +747,7 @@ display: block;
   text-align: left;
 }
 
+/* Settings icon image in navbar */
 .settings-img {
   width: 28px;
   height: 28px;
@@ -721,6 +756,8 @@ display: block;
   margin: 0 6px;
 }
 
+/* ===== TASK SECTION LAYOUT ===== */
+/* Task section container */
 .task-section {
   flex: none;
   max-width: 1400px;
@@ -752,6 +789,7 @@ display: block;
   color: #bdbdbd;
 }
 
+/* ===== FOOTER ===== */
 .dashboard-footer {
     width: 100%;
     text-align: center;
@@ -765,6 +803,7 @@ display: block;
     border-top: 2px solid #5e6266;
     margin-top: 40px;
 }
+/* Motivation quote in footer */
 .motivation-quote {
     margin: 0;
     font-style: italic;
@@ -1203,4 +1242,114 @@ display: block;
   .stat-label {
     font-size: 0.8rem;
   }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+/* Modal content box */
+.modal-content {
+  background: #23242b;
+  margin: 6% auto;
+  padding: 48px 48px 32px 48px;
+  border: none;
+  width: 480px;
+  border-radius: 22px;
+  position: relative;
+  color: #f4f4f4;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.32), 0 2px 8px rgba(255,179,71,0.08);
+  font-size: 1.2rem;
+  transition: box-shadow 0.2s;
+}
+.modal-content:hover {
+  box-shadow: 0 16px 64px rgba(0,0,0,0.38), 0 4px 16px rgba(255,179,71,0.10);
+}
+
+/* Close button for modal */
+.close {
+  color: #ffb347;
+  position: absolute;
+  right: 32px;
+  top: 24px;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s, transform 0.2s;
+}
+.close:hover,
+.close:focus {
+  color: #ffd580;
+  transform: scale(1.2) rotate(8deg);
+  text-shadow: 0 2px 8px #ffb34744;
+}
+
+.modal-content h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+/* Add Task modal form styles */
+#taskForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#taskForm label {
+  font-size: 1.15rem;
+  color: #ffb347;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+#taskForm input[type="text"],
+#taskForm input[type="time"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1.5px solid #444;
+  background: #181a20;
+  color: #f4f4f4;
+  margin-top: 4px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.04);
+}
+#taskForm input[type="text"]:focus,
+#taskForm input[type="time"]:focus {
+  border: 1.5px solid #ffb347;
+  box-shadow: 0 0 0 2px #ffb34733;
+}
+#taskForm button[type="submit"] {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 1.2rem;
+  padding: 16px 0;
+  background: linear-gradient(90deg, #ffb347 60%, #ffd580 100%);
+  color: #23242b;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+#taskForm button[type="submit"]:hover {
+  background: linear-gradient(90deg, #ffd580 60%, #ffb347 100%);
+  color: #181a1b;
+  box-shadow: 0 4px 16px rgba(255,179,71,0.18);
+  transform: translateY(-2px) scale(1.03);
 }

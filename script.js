@@ -276,3 +276,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// --- Add Task Modal Logic ---
+document.addEventListener('DOMContentLoaded', function() {
+  const addTaskBtn = document.querySelector('.add-task');
+  const addTaskModal = document.getElementById('addTaskModal');
+  const closeModal = document.getElementById('closeModal');
+  const taskForm = document.getElementById('taskForm');
+
+  if (addTaskBtn && addTaskModal && closeModal && taskForm) {
+    addTaskBtn.addEventListener('click', function() {
+      addTaskModal.style.display = 'block';
+    });
+    closeModal.addEventListener('click', function() {
+      addTaskModal.style.display = 'none';
+    });
+    window.addEventListener('click', function(event) {
+      if (event.target === addTaskModal) {
+        addTaskModal.style.display = 'none';
+      }
+    });
+    taskForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const taskName = document.getElementById('taskName').value;
+      const taskTime = document.getElementById('taskTime').value;
+      // Add the new task to the task list with time
+      const taskList = document.querySelector('.task-list');
+      if (taskList && taskName && taskTime) {
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        li.innerHTML = `<label><input type="checkbox"> ${taskName} <span class="task-time">(Time: ${taskTime})</span></label>`;
+        taskList.appendChild(li);
+      }
+      addTaskModal.style.display = 'none';
+      taskForm.reset();
+    });
+  }
+});

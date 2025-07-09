@@ -1,3 +1,4 @@
+<!-- Dashboard Page HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +8,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Main Dashboard Container -->
     <div class="dashboard-container">
+        <!-- Navigation Bar -->
         <nav class="navbar">
             <div class="navbar-left">
+                <!-- App Logo -->
                 <img src="components/logoicon.png" alt="Logo" class="logo dashboard-logo">
                 <span class="welcome">Welcome back</span>
             </div>
             <div class="navbar-right">
+                <!-- User Level Display -->
                 <span class="level">level <span class="level-number">5</span></span>
+                <!-- Settings Link -->
                 <a href="settings.html" class="settings-icon" title="Settings">
                   <img src="components/settings.png" alt="Settings" class="settings-img">
                 </a>
+                <!-- Profile Icon -->
                 <img src="components/github.png" alt="Profile" class="profile dashboard-profile">
             </div>
         </nav>
         <main class="main-content">
             <div class="top-section">
+                <!-- Task Section -->
                 <section class="task-section">
                     <div class="task-section-header">
+                        <!-- Add Task Button -->
                         <button class="add-task">Add Task</button>
+                        <!-- Streak Display -->
                         <div class="star-rating">&#9733;&#9733;&#9733; Streak</div>
                     </div>
+                    <!-- Task List -->
                     <ul class="task-list">
                         <li class="task-item"><label><input type="checkbox" checked> Finish dashboard UI</label></li>
                         <li class="task-item"><label><input type="checkbox" checked> Add authentication</label></li>
@@ -36,6 +47,7 @@
                     </ul>
                 </section>
             </div>
+            <!-- Contribution Graph Section -->
             <section class="contribution-graph">
                 <div id="heatmap"></div>
                 <div class="graph-legend">
@@ -49,9 +61,29 @@
             </section>
         </main>
     </div>
+    <!-- End Main Dashboard Container -->
     <script src="script.js"></script>
+    <!-- Footer with Motivation Quote -->
     <footer class="dashboard-footer">
         <p class="motivation-quote"><span id="motivation-quote"></span></p>
     </footer>
+
+    <!-- Add Task Modal -->
+    <div id="addTaskModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Add New Task</h2>
+        <form id="taskForm">
+          <label for="taskName">Task Name:</label>
+          <input type="text" id="taskName" name="taskName" required>
+          <br>
+          <label for="taskTime">Timing:</label>
+          <input type="time" id="taskTime" name="taskTime" required>
+          <br>
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
+    </div>
+    <!-- End Add Task Modal -->
 </body>
 </html> 
