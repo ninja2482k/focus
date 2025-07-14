@@ -10,8 +10,8 @@ body {
 
 /* Prevent scrolling on settings page */
 body.settings-page {
-  overflow: hidden;
-  height: 100vh;
+  overflow-y: auto !important;
+  height: auto !important;
 }
 
 /* ===== LOGO STYLES ===== */
@@ -523,6 +523,8 @@ body.settings-page {
   padding: 40px 0 32px 0;
   max-width: none;
   margin: 40px auto 0 auto;
+  overflow-y: auto !important;
+  max-height: calc(100vh - 64px) !important;
 }
 
 /* Add Task button styles */
@@ -909,6 +911,8 @@ display: block;
   box-sizing: border-box;
   height: calc(100vh - 80px);
   overflow: hidden;
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important;
 }
 
 .settings-panel {
@@ -1384,4 +1388,32 @@ display: block;
   color: #ffb347;
   margin-left: 6px;
   min-width: 60px;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #ffb347;
+  background: #23242b;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.10);
+  margin-right: 12px;
+}
+.upload-photo-btn {
+  background: #ffb347;
+  color: #23242b;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.10);
+}
+.upload-photo-btn:hover {
+  background: #ffd580;
+  color: #181a1b;
+  transform: translateY(-2px) scale(1.03);
 }

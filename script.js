@@ -288,6 +288,36 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// --- Profile Photo Upload & Preview for Settings Page ---
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.endsWith('settings.html')) {
+    const photoInput = document.getElementById('profile-photo-input');
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const uploadBtn = document.getElementById('upload-photo-btn');
+    // Load saved photo from localStorage
+    const savedPhoto = localStorage.getItem('profilePhoto');
+    if (savedPhoto && photoPreview) {
+      photoPreview.src = savedPhoto;
+    }
+    if (uploadBtn && photoInput && photoPreview) {
+      uploadBtn.addEventListener('click', function() {
+        photoInput.click();
+      });
+      photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            photoPreview.src = evt.target.result;
+            localStorage.setItem('profilePhoto', evt.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  }
+});
+
 // --- Add Task Modal Logic ---
 document.addEventListener('DOMContentLoaded', function() {
   const addTaskBtn = document.querySelector('.add-task');
@@ -322,5 +352,13 @@ document.addEventListener('DOMContentLoaded', function() {
       addTaskModal.style.display = 'none';
       taskForm.reset();
     });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dashboardPhoto = document.getElementById('dashboard-profile-photo');
+  const savedPhoto = localStorage.getItem('profilePhoto');
+  if (dashboardPhoto && savedPhoto) {
+    dashboardPhoto.src = savedPhoto;
   }
 });
