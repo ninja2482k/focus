@@ -128,6 +128,17 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
 
 // --- Motivation Quote Randomizer ---
 document.addEventListener('DOMContentLoaded', function() {
+  // Dynamic EXP Bar for Dashboard
+  if (window.location.pathname.endsWith('dashboard.html')) {
+    // Example values; replace with real data as needed
+    const currentXP = 120;
+    const maxXP = 200;
+    const percent = Math.min(100, (currentXP / maxXP) * 100);
+    const fill = document.querySelector('.expbar-fill');
+    const label = document.querySelector('.expbar-label');
+    if (fill) fill.style.width = percent + '%';
+    if (label) label.textContent = `${currentXP}/${maxXP} XP`;
+  }
   const quotes = [
     "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
     "The only way to do great work is to love what you do. – Steve Jobs",
