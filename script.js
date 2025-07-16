@@ -124,6 +124,20 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   // Clear old grid and append new structure
   heatmap.innerHTML = '';
   heatmap.appendChild(heatmapBody);
+
+  // Add animation classes to cells
+  const cells = heatmap.querySelectorAll('.cell');
+  cells.forEach((cell, index) => {
+    cell.style.opacity = '0';
+    cell.style.transform = 'scale(0)';
+    cell.style.transition = 'all 0.3s ease';
+    
+    // Stagger the animation
+    setTimeout(() => {
+      cell.style.opacity = '1';
+      cell.style.transform = 'scale(1)';
+    }, index * 10); // 10ms delay between each cell
+  });
 })();
 
 // --- Motivation Quote Randomizer ---

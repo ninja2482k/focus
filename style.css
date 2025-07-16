@@ -511,6 +511,20 @@ body.settings-page {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffb347;
+  transition: transform 0.2s ease;
+}
+
+.profile-link {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.profile-link:hover .profile.dashboard-profile {
+  transform: scale(1.1);
+  border-color: #ffd580;
+  box-shadow: 0 2px 8px rgba(255, 179, 71, 0.3);
 }
 
 /* ===== MAIN CONTENT & TASKS ===== */
@@ -574,6 +588,34 @@ body.settings-page {
   margin-bottom: 0;
   min-width: 120px;
   text-align: right;
+  animation: starFade 1s ease-in forwards;
+}
+
+@keyframes starFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Individual star effects - only on load */
+.star-rating::before {
+  content: "★★★";
+  display: inline-block;
+  animation: starScale 1s ease-out forwards;
+}
+
+@keyframes starScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .stretch-heatmap {
@@ -636,6 +678,18 @@ margin-left: 0; /* Remove extra margin, align with grid */
 gap: 2px;
 margin-bottom: 4px;
 justify-content: flex-start;
+animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Month label in graph */
@@ -657,6 +711,18 @@ align-items: flex-start;
 width: 100%;
 position: relative;
 overflow: hidden !important;
+animation: slideInFromLeft 0.8s ease-out;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Column for each day in heatmap */
@@ -664,6 +730,18 @@ overflow: hidden !important;
   display: flex;
   flex-direction: column;
   gap: 0px;
+  animation: slideInFromTop 0.7s ease-out;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Day label in heatmap */
@@ -698,9 +776,41 @@ max-width: 20px;
 max-height: 20px;
 border-radius: 2px;
 background: #161b22;
-transition: background 0.2s;
+transition: all 0.3s ease;
 display: block;
+opacity: 0;
+transform: scale(0);
+animation: cellAppear 0.5s ease forwards;
 }
+
+@keyframes cellAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Stagger animation for cells */
+.cell:nth-child(1) { animation-delay: 0ms; }
+.cell:nth-child(2) { animation-delay: 20ms; }
+.cell:nth-child(3) { animation-delay: 40ms; }
+.cell:nth-child(4) { animation-delay: 60ms; }
+.cell:nth-child(5) { animation-delay: 80ms; }
+.cell:nth-child(6) { animation-delay: 100ms; }
+.cell:nth-child(7) { animation-delay: 120ms; }
+.cell:nth-child(8) { animation-delay: 140ms; }
+.cell:nth-child(9) { animation-delay: 160ms; }
+.cell:nth-child(10) { animation-delay: 180ms; }
+/* Continue pattern for more cells */
+.cell:nth-child(n+11) { animation-delay: 200ms; }
 
 /* Cell color levels for activity */
 .cell.level-0 { background: #161b22; }

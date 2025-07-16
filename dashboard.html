@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="components/logoicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,7 +32,9 @@
                   <img src="components/settings.png" alt="Settings" class="settings-img">
                 </a>
                 <!-- Profile Icon -->
-                <img src="components/github.png" alt="Profile" class="profile dashboard-profile" id="dashboard-profile-photo">
+                <a href="settings.html" class="profile-link">
+                  <img src="components/github.png" alt="Profile" class="profile dashboard-profile" id="dashboard-profile-photo">
+                </a>
             </div>
         </nav>
         <main class="main-content">
@@ -42,7 +45,7 @@
                         <!-- Add Task Button -->
                         <button class="add-task">Add Task</button>
                         <!-- Streak Display -->
-                        <div class="star-rating">&#9733;&#9733;&#9733; Streak</div>
+                        <div class="star-rating"> Streak</div>
                     </div>
                     <!-- Task List -->
                     <ul class="task-list">
