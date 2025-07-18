@@ -280,6 +280,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const masterVolumeSlider = document.getElementById('master-volume');
   const volumeValue = document.querySelector('.volume-value');
 
+  // Animate sidebar nav items on load
+  if (window.location.pathname.endsWith('settings.html')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sidebar nav staggered animation
+      const navItems = document.querySelectorAll('.settings-nav .nav-item');
+      navItems.forEach((item, i) => {
+        item.style.opacity = '0';
+        setTimeout(() => {
+          item.style.opacity = '';
+          item.classList.remove('nav-animated');
+          void item.offsetWidth;
+          item.classList.add('nav-animated');
+        }, 80 + i * 80);
+      });
+      // Animate form elements in active panel
+      function animatePanel(panel) {
+        const elems = panel.querySelectorAll('.setting-item, .settings-input, .checkbox-label, .upload-photo-btn');
+        elems.forEach((el, i) => {
+          el.style.opacity = '0';
+          el.classList.remove('form-animated');
+          setTimeout(() => {
+            el.style.opacity = '';
+            void el.offsetWidth;
+            el.classList.add('form-animated');
+          }, 100 + i * 60);
+        });
+      }
+      // Animate initial panel
+      const activePanel = document.querySelector('.settings-panel.active');
+      if (activePanel) animatePanel(activePanel);
+      // Animate on panel switch
+      const navs = document.querySelectorAll('.nav-item');
+      const panels = document.querySelectorAll('.settings-panel');
+      navs.forEach(nav => {
+        nav.addEventListener('click', function() {
+          setTimeout(() => {
+            const active = document.querySelector('.settings-panel.active');
+            if (active) animatePanel(active);
+          }, 10);
+        });
+      });
+      // Profile photo glow on hover
+      const photo = document.getElementById('profile-photo-preview');
+      if (photo) {
+        photo.addEventListener('mouseenter', () => photo.classList.add('glow'));
+        photo.addEventListener('mouseleave', () => photo.classList.remove('glow'));
+      }
+      // Profile photo upload animation
+      const photoInput = document.getElementById('profile-photo-input');
+      if (photoInput && photo) {
+        photoInput.addEventListener('change', function(e) {
+          setTimeout(() => {
+            photo.classList.remove('upload-anim');
+            void photo.offsetWidth;
+            photo.classList.add('upload-anim');
+          }, 100);
+        });
+      }
+    });
+  }
+
   // Helper: Get all settings values from the form
   function getSettingsFromForm() {
     return {

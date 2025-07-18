@@ -1585,3 +1585,98 @@ animation: cellAppear 0.5s ease forwards;
     transform: scale(1);
   }
 }
+
+/* === SETTINGS PAGE ANIMATIONS === */
+
+/* Panel slide-in animation */
+.settings-panel {
+  animation: settingsPanelSlideIn 0.6s cubic-bezier(.4,0,.2,1);
+}
+@keyframes settingsPanelSlideIn {
+  0% { opacity: 0; transform: translateX(40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Sidebar nav staggered slide-in */
+.settings-nav .nav-item {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: navItemStaggerIn 0.5s cubic-bezier(.4,0,.2,1) forwards;
+}
+.settings-nav .nav-item:nth-child(1) { animation-delay: 0.08s; }
+.settings-nav .nav-item:nth-child(2) { animation-delay: 0.16s; }
+.settings-nav .nav-item:nth-child(3) { animation-delay: 0.24s; }
+.settings-nav .nav-item:nth-child(4) { animation-delay: 0.32s; }
+.settings-nav .nav-item:nth-child(5) { animation-delay: 0.40s; }
+.settings-nav .nav-item:nth-child(6) { animation-delay: 0.48s; }
+@keyframes navItemStaggerIn {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Sidebar nav shimmer hover */
+.nav-item {
+  position: relative;
+  overflow: hidden;
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  left: -75%;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.4s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.nav-item:hover::after {
+  left: 120%;
+  transition: left 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+/* Form elements slide-in from bottom */
+.setting-item, .settings-input, .checkbox-label, .upload-photo-btn {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: formElemSlideIn 0.5s cubic-bezier(.4,0,.2,1) forwards;
+}
+.setting-item { animation-delay: 0.1s; }
+.setting-item:nth-child(2) { animation-delay: 0.18s; }
+.setting-item:nth-child(3) { animation-delay: 0.26s; }
+.setting-item:nth-child(4) { animation-delay: 0.34s; }
+.setting-item:nth-child(5) { animation-delay: 0.42s; }
+@keyframes formElemSlideIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Form element hover effect */
+.settings-input:hover, .checkbox-label:hover, .upload-photo-btn:hover {
+  box-shadow: 0 0 0 3px #ffb34744, 0 2px 8px #ffb34722;
+  border-color: #ffb347;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Profile photo glow and upload animation */
+.profile-photo {
+  box-shadow: 0 0 0 0 #ffb347, 0 2px 8px rgba(255,179,71,0.10);
+  transition: box-shadow 0.4s cubic-bezier(.4,0,.2,1);
+}
+.profile-photo.glow {
+  box-shadow: 0 0 16px 4px #ffb34788, 0 2px 8px #ffb34722;
+  animation: photoGlowPulse 1.2s infinite alternate;
+}
+@keyframes photoGlowPulse {
+  0% { box-shadow: 0 0 8px 2px #ffb34744, 0 2px 8px #ffb34722; }
+  100% { box-shadow: 0 0 24px 8px #ffb347cc, 0 2px 8px #ffb34722; }
+}
+.profile-photo.upload-anim {
+  animation: photoUploadPop 0.6s cubic-bezier(.4,0,.2,1);
+}
+@keyframes photoUploadPop {
+  0% { transform: scale(0.8) rotate(-8deg); opacity: 0.5; }
+  60% { transform: scale(1.1) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
