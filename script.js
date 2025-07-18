@@ -7,12 +7,20 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   const formToggle = document.querySelector('.form-toggle');
 
   if (loginToggle && signupToggle && loginForm && signupForm && formToggle) {
+    function animateFormShow(form) {
+      form.classList.remove('form-fade');
+      // Force reflow to restart animation
+      void form.offsetWidth;
+      form.classList.add('form-fade');
+    }
+
     loginToggle.addEventListener('click', () => {
       loginToggle.classList.add('active');
       signupToggle.classList.remove('active');
       loginForm.classList.remove('hidden');
       signupForm.classList.add('hidden');
       formToggle.classList.remove('signup-active');
+      animateFormShow(loginForm);
     });
 
     signupToggle.addEventListener('click', () => {
@@ -21,7 +29,10 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
       signupForm.classList.remove('hidden');
       loginForm.classList.add('hidden');
       formToggle.classList.add('signup-active');
+      animateFormShow(signupForm);
     });
+    // Initial animation for login form
+    animateFormShow(loginForm);
   }
 }
 
