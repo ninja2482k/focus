@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="components/logoicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,12 +21,20 @@
             <div class="navbar-right">
                 <!-- User Level Display -->
                 <span class="level">level <span class="level-number">5</span></span>
+                <div class="expbar-container">
+                  <div class="expbar">
+                    <div class="expbar-fill" style="width: 0%"></div>
+                  </div>
+                  <span class="expbar-label">0/0 XP</span>
+                </div>
                 <!-- Settings Link -->
                 <a href="settings.html" class="settings-icon" title="Settings">
                   <img src="components/settings.png" alt="Settings" class="settings-img">
                 </a>
                 <!-- Profile Icon -->
-                <img src="components/github.png" alt="Profile" class="profile dashboard-profile">
+                <a href="settings.html" class="profile-link">
+                  <img src="components/github.png" alt="Profile" class="profile dashboard-profile" id="dashboard-profile-photo">
+                </a>
             </div>
         </nav>
         <main class="main-content">
@@ -36,7 +45,7 @@
                         <!-- Add Task Button -->
                         <button class="add-task">Add Task</button>
                         <!-- Streak Display -->
-                        <div class="star-rating">&#9733;&#9733;&#9733; Streak</div>
+                        <div class="star-rating"> Streak</div>
                     </div>
                     <!-- Task List -->
                     <ul class="task-list">

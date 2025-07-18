@@ -10,8 +10,8 @@ body {
 
 /* Prevent scrolling on settings page */
 body.settings-page {
-  overflow: hidden;
-  height: 100vh;
+  overflow-y: auto !important;
+  height: auto !important;
 }
 
 /* ===== LOGO STYLES ===== */
@@ -511,6 +511,20 @@ body.settings-page {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffb347;
+  transition: transform 0.2s ease;
+}
+
+.profile-link {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.profile-link:hover .profile.dashboard-profile {
+  transform: scale(1.1);
+  border-color: #ffd580;
+  box-shadow: 0 2px 8px rgba(255, 179, 71, 0.3);
 }
 
 /* ===== MAIN CONTENT & TASKS ===== */
@@ -523,6 +537,8 @@ body.settings-page {
   padding: 40px 0 32px 0;
   max-width: none;
   margin: 40px auto 0 auto;
+  overflow-y: hidden !important;
+  max-height: none !important;
 }
 
 /* Add Task button styles */
@@ -572,6 +588,34 @@ body.settings-page {
   margin-bottom: 0;
   min-width: 120px;
   text-align: right;
+  animation: starFade 1s ease-in forwards;
+}
+
+@keyframes starFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Individual star effects - only on load */
+.star-rating::before {
+  content: "★★★";
+  display: inline-block;
+  animation: starScale 1s ease-out forwards;
+}
+
+@keyframes starScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .stretch-heatmap {
@@ -634,6 +678,18 @@ margin-left: 0; /* Remove extra margin, align with grid */
 gap: 2px;
 margin-bottom: 4px;
 justify-content: flex-start;
+animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Month label in graph */
@@ -654,6 +710,19 @@ justify-content: flex-start;
 align-items: flex-start;
 width: 100%;
 position: relative;
+overflow: hidden !important;
+animation: slideInFromLeft 0.8s ease-out;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Column for each day in heatmap */
@@ -661,6 +730,18 @@ position: relative;
   display: flex;
   flex-direction: column;
   gap: 0px;
+  animation: slideInFromTop 0.7s ease-out;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Day label in heatmap */
@@ -678,6 +759,7 @@ width: 100%;
   height: 100%;
 min-width: 0;
   min-height: 0;
+overflow: hidden !important;
 }
 
 /* Individual heatmap column */
@@ -694,9 +776,41 @@ max-width: 20px;
 max-height: 20px;
 border-radius: 2px;
 background: #161b22;
-transition: background 0.2s;
+transition: all 0.3s ease;
 display: block;
+opacity: 0;
+transform: scale(0);
+animation: cellAppear 0.5s ease forwards;
 }
+
+@keyframes cellAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Stagger animation for cells */
+.cell:nth-child(1) { animation-delay: 0ms; }
+.cell:nth-child(2) { animation-delay: 20ms; }
+.cell:nth-child(3) { animation-delay: 40ms; }
+.cell:nth-child(4) { animation-delay: 60ms; }
+.cell:nth-child(5) { animation-delay: 80ms; }
+.cell:nth-child(6) { animation-delay: 100ms; }
+.cell:nth-child(7) { animation-delay: 120ms; }
+.cell:nth-child(8) { animation-delay: 140ms; }
+.cell:nth-child(9) { animation-delay: 160ms; }
+.cell:nth-child(10) { animation-delay: 180ms; }
+/* Continue pattern for more cells */
+.cell:nth-child(n+11) { animation-delay: 200ms; }
 
 /* Cell color levels for activity */
 .cell.level-0 { background: #161b22; }
@@ -909,6 +1023,8 @@ display: block;
   box-sizing: border-box;
   height: calc(100vh - 80px);
   overflow: hidden;
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important;
 }
 
 .settings-panel {
@@ -1351,5 +1467,65 @@ display: block;
   background: linear-gradient(90deg, #ffd580 60%, #ffb347 100%);
   color: #181a1b;
   box-shadow: 0 4px 16px rgba(255,179,71,0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.expbar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.expbar {
+  width: 100px;
+  height: 12px;
+  background: #292929;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(255,179,71,0.10);
+  margin-left: 8px;
+  position: relative;
+}
+
+.expbar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffb347 60%, #ffd580 100%);
+  border-radius: 6px 0 0 6px;
+  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+.expbar-label {
+  font-size: 0.95rem;
+  color: #ffb347;
+  margin-left: 6px;
+  min-width: 60px;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #ffb347;
+  background: #23242b;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.10);
+  margin-right: 12px;
+}
+.upload-photo-btn {
+  background: #ffb347;
+  color: #23242b;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.10);
+}
+.upload-photo-btn:hover {
+  background: #ffd580;
+  color: #181a1b;
   transform: translateY(-2px) scale(1.03);
 }

@@ -124,10 +124,35 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   // Clear old grid and append new structure
   heatmap.innerHTML = '';
   heatmap.appendChild(heatmapBody);
+
+  // Add animation classes to cells
+  const cells = heatmap.querySelectorAll('.cell');
+  cells.forEach((cell, index) => {
+    cell.style.opacity = '0';
+    cell.style.transform = 'scale(0)';
+    cell.style.transition = 'all 0.3s ease';
+    
+    // Stagger the animation
+    setTimeout(() => {
+      cell.style.opacity = '1';
+      cell.style.transform = 'scale(1)';
+    }, index * 10); // 10ms delay between each cell
+  });
 })();
 
 // --- Motivation Quote Randomizer ---
 document.addEventListener('DOMContentLoaded', function() {
+  // Dynamic EXP Bar for Dashboard
+  if (window.location.pathname.endsWith('dashboard.html')) {
+    // Example values; replace with real data as needed
+    const currentXP = 120;
+    const maxXP = 200;
+    const percent = Math.min(100, (currentXP / maxXP) * 100);
+    const fill = document.querySelector('.expbar-fill');
+    const label = document.querySelector('.expbar-label');
+    if (fill) fill.style.width = percent + '%';
+    if (label) label.textContent = `${currentXP}/${maxXP} XP`;
+  }
   const quotes = [
     "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
     "The only way to do great work is to love what you do. – Steve Jobs",
@@ -189,33 +214,97 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Settings Page Functionality ---
   const masterVolumeSlider = document.getElementById('master-volume');
   const volumeValue = document.querySelector('.volume-value');
-  
+
+  // Helper: Get all settings values from the form
+  function getSettingsFromForm() {
+    return {
+      profilePhoto: document.getElementById('profile-photo-preview')?.src || '',
+      username: document.getElementById('username')?.value || '',
+      email: document.getElementById('email')?.value || '',
+      bio: document.getElementById('bio')?.value || '',
+      timezone: document.getElementById('timezone')?.value || '',
+      notifications: {
+        email: document.querySelector('#notifications input[type="checkbox"]:nth-of-type(1)')?.checked || false,
+        daily: document.querySelector('#notifications input[type="checkbox"]:nth-of-type(2)')?.checked || false,
+        weekly: document.querySelector('#notifications input[type="checkbox"]:nth-of-type(3)')?.checked || false,
+        goal: document.querySelector('#notifications input[type="checkbox"]:nth-of-type(4)')?.checked || false,
+        streak: document.querySelector('#notifications input[type="checkbox"]:nth-of-type(5)')?.checked || false,
+        reminderTime: document.getElementById('notification-time')?.value || ''
+      },
+      theme: document.getElementById('theme')?.value || '',
+      accentColor: document.getElementById('accent-color')?.value || '',
+      language: document.getElementById('language')?.value || '',
+      showAnimations: document.querySelector('#theme-ui input[type="checkbox"]:nth-of-type(1)')?.checked || false,
+      compactMode: document.querySelector('#theme-ui input[type="checkbox"]:nth-of-type(2)')?.checked || false,
+      masterVolume: document.getElementById('master-volume')?.value || '70',
+      taskCompletionSounds: document.querySelector('#sound-music input[type="checkbox"]:nth-of-type(1)')?.checked || false,
+      breakTimeAlerts: document.querySelector('#sound-music input[type="checkbox"]:nth-of-type(2)')?.checked || false,
+      breakSound: document.getElementById('break-sound')?.value || ''
+    };
+  }
+
+  // Helper: Set all settings values to the form
+  function setSettingsToForm(settings) {
+    if (!settings) return;
+    if (settings.profilePhoto && document.getElementById('profile-photo-preview')) {
+      document.getElementById('profile-photo-preview').src = settings.profilePhoto;
+    }
+    if (settings.username) document.getElementById('username').value = settings.username;
+    if (settings.email) document.getElementById('email').value = settings.email;
+    if (settings.bio) document.getElementById('bio').value = settings.bio;
+    if (settings.timezone) document.getElementById('timezone').value = settings.timezone;
+    if (settings.notifications) {
+      const notif = settings.notifications;
+      const notifChecks = document.querySelectorAll('#notifications input[type="checkbox"]');
+      if (notifChecks[0]) notifChecks[0].checked = notif.email;
+      if (notifChecks[1]) notifChecks[1].checked = notif.daily;
+      if (notifChecks[2]) notifChecks[2].checked = notif.weekly;
+      if (notifChecks[3]) notifChecks[3].checked = notif.goal;
+      if (notifChecks[4]) notifChecks[4].checked = notif.streak;
+      if (notif.reminderTime) document.getElementById('notification-time').value = notif.reminderTime;
+    }
+    if (settings.theme) document.getElementById('theme').value = settings.theme;
+    if (settings.accentColor) document.getElementById('accent-color').value = settings.accentColor;
+    if (settings.language) document.getElementById('language').value = settings.language;
+    const themeChecks = document.querySelectorAll('#theme-ui input[type="checkbox"]');
+    if (themeChecks[0]) themeChecks[0].checked = settings.showAnimations;
+    if (themeChecks[1]) themeChecks[1].checked = settings.compactMode;
+    if (settings.masterVolume) document.getElementById('master-volume').value = settings.masterVolume;
+    if (volumeValue) volumeValue.textContent = (settings.masterVolume || '70') + '%';
+    const soundChecks = document.querySelectorAll('#sound-music input[type="checkbox"]');
+    if (soundChecks[0]) soundChecks[0].checked = settings.taskCompletionSounds;
+    if (soundChecks[1]) soundChecks[1].checked = settings.breakTimeAlerts;
+    if (settings.breakSound) document.getElementById('break-sound').value = settings.breakSound;
+  }
+
+  // On DOMContentLoaded, load settings from localStorage
+  if (window.location.pathname.endsWith('settings.html')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedSettings = localStorage.getItem('userSettings');
+      if (savedSettings) {
+        try {
+          setSettingsToForm(JSON.parse(savedSettings));
+        } catch (e) {}
+      }
+    });
+  }
+
   if (masterVolumeSlider && volumeValue) {
-    // Update volume display when slider changes
     masterVolumeSlider.addEventListener('input', function() {
       volumeValue.textContent = this.value + '%';
     });
-    
-    // Initialize volume display
     volumeValue.textContent = masterVolumeSlider.value + '%';
   }
 
   // Settings sidebar navigation
   const navItems = document.querySelectorAll('.nav-item');
   const settingsPanels = document.querySelectorAll('.settings-panel');
-  
   navItems.forEach(item => {
     item.addEventListener('click', function(e) {
       e.preventDefault();
-      
-      // Remove active class from all nav items and panels
       navItems.forEach(nav => nav.classList.remove('active'));
       settingsPanels.forEach(panel => panel.classList.remove('active'));
-      
-      // Add active class to clicked nav item
       this.classList.add('active');
-      
-      // Show corresponding panel
       const targetSection = this.getAttribute('data-section');
       const targetPanel = document.getElementById(targetSection);
       if (targetPanel) {
@@ -229,26 +318,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (settingsForm) {
     const saveButton = settingsForm.querySelector('.btn-primary');
     const cancelButton = settingsForm.querySelector('.btn-secondary');
-    
+
     if (saveButton) {
       saveButton.addEventListener('click', function(e) {
         e.preventDefault();
+        // Save all settings to localStorage
+        const settings = getSettingsFromForm();
+        localStorage.setItem('userSettings', JSON.stringify(settings));
         alert('Settings saved successfully!');
       });
     }
-    
+
     if (cancelButton) {
       cancelButton.addEventListener('click', function(e) {
         e.preventDefault();
-        // Reset form to original values
-        const inputs = settingsForm.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-          if (input.type === 'checkbox') {
-            input.checked = input.defaultChecked;
-          } else {
-            input.value = input.defaultValue;
-          }
-        });
+        // Reset form to saved values
+        const savedSettings = localStorage.getItem('userSettings');
+        if (savedSettings) {
+          setSettingsToForm(JSON.parse(savedSettings));
+        }
         alert('Changes cancelled.');
       });
     }
@@ -274,6 +362,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
+  }
+});
+
+// --- Profile Photo Upload & Preview for Settings Page ---
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.endsWith('settings.html')) {
+    const photoInput = document.getElementById('profile-photo-input');
+    const photoPreview = document.getElementById('profile-photo-preview');
+    const uploadBtn = document.getElementById('upload-photo-btn');
+    // Load photo from settings, not localStorage directly
+    const savedSettings = localStorage.getItem('userSettings');
+    if (savedSettings && photoPreview) {
+      try {
+        const settings = JSON.parse(savedSettings);
+        if (settings.profilePhoto) photoPreview.src = settings.profilePhoto;
+      } catch (e) {}
+    }
+    if (uploadBtn && photoInput && photoPreview) {
+      uploadBtn.addEventListener('click', function() {
+        photoInput.click();
+      });
+      photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            // Only update preview, do not save yet
+            photoPreview.src = evt.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   }
 });
 
@@ -311,5 +432,13 @@ document.addEventListener('DOMContentLoaded', function() {
       addTaskModal.style.display = 'none';
       taskForm.reset();
     });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dashboardPhoto = document.getElementById('dashboard-profile-photo');
+  const savedPhoto = localStorage.getItem('profilePhoto');
+  if (dashboardPhoto && savedPhoto) {
+    dashboardPhoto.src = savedPhoto;
   }
 });
