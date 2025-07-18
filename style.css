@@ -34,6 +34,24 @@ body.settings-page {
   object-fit: contain;
 }
 
+/* --- Dashboard Logo Slide-in Animation --- */
+.logo.dashboard-logo {
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: logoSlideIn 1s cubic-bezier(0.77,0,0.175,1) 0.2s forwards;
+}
+
+@keyframes logoSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* ===== MAIN LAYOUT ===== */
 .container {
   display: flex;
@@ -924,6 +942,14 @@ animation: cellAppear 0.5s ease forwards;
     font-weight: 500;
     color: #ffb347;
     letter-spacing: 0.01em;
+}
+
+/* --- Typewriter effect for motivation quote --- */
+.motivation-quote.typewriter {
+  border-right: 2px solid #ffb347;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: none; /* Animation handled by JS */
 }
 
 /* ===== SETTINGS PAGE STYLES ===== */

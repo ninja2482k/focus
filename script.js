@@ -140,7 +140,7 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   });
 })();
 
-// --- Motivation Quote Randomizer ---
+// --- Motivation Quote Randomizer + Typewriter Effect ---
 document.addEventListener('DOMContentLoaded', function() {
   // Dynamic EXP Bar for Dashboard
   if (window.location.pathname.endsWith('dashboard.html')) {
@@ -152,21 +152,75 @@ document.addEventListener('DOMContentLoaded', function() {
     const label = document.querySelector('.expbar-label');
     if (fill) fill.style.width = percent + '%';
     if (label) label.textContent = `${currentXP}/${maxXP} XP`;
-  }
-  const quotes = [
-    "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
-    "The only way to do great work is to love what you do. – Steve Jobs",
-    "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
-    "Believe you can and you’re halfway there. – Theodore Roosevelt",
-    "It always seems impossible until it’s done. – Nelson Mandela",
-    "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
-    "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
-    "Dream big and dare to fail. – Norman Vaughan"
-  ];
-  const quoteEl = document.getElementById('motivation-quote');
-  if (quoteEl) {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteEl.textContent = quotes[randomIndex];
+
+    // --- Level Counter Animation ---
+    const levelNumberEl = document.querySelector('.level-number');
+    if (levelNumberEl) {
+      const targetLevel = parseInt(levelNumberEl.textContent, 10) || 1;
+      let current = 0;
+      levelNumberEl.textContent = '0';
+      const duration = 900; // ms
+      const stepTime = Math.max(20, Math.floor(duration / targetLevel));
+      function animateLevel() {
+        if (current < targetLevel) {
+          current++;
+          levelNumberEl.textContent = current;
+          setTimeout(animateLevel, stepTime);
+        } else {
+          levelNumberEl.textContent = targetLevel;
+        }
+      }
+      animateLevel();
+    }
+
+    // --- Typewriter effect for motivation quote ---
+    const quotes = [
+      "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+      "Believe you can and you’re halfway there. – Theodore Roosevelt",
+      "It always seems impossible until it’s done. – Nelson Mandela",
+      "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
+      "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
+      "Dream big and dare to fail. – Norman Vaughan"
+    ];
+    const quoteEl = document.getElementById('motivation-quote');
+    if (quoteEl) {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const quote = quotes[randomIndex];
+      quoteEl.textContent = '';
+      quoteEl.classList.add('typewriter');
+      let i = 0;
+      function typeWriter() {
+        if (i < quote.length) {
+          quoteEl.textContent += quote.charAt(i);
+          i++;
+          setTimeout(typeWriter, 28);
+        } else {
+          quoteEl.classList.remove('typewriter'); // Remove cursor after typing
+        }
+      }
+      typeWriter();
+    }
+
+    // --- Logo slide-in (ensure re-animation on reload) ---
+    const logo = document.querySelector('.logo.dashboard-logo');
+    if (logo) {
+      logo.style.opacity = '0';
+      logo.style.transform = 'translateX(-60px)';
+      // Force reflow to restart animation if needed
+      void logo.offsetWidth;
+      logo.style.animation = 'logoSlideIn 1s cubic-bezier(0.77,0,0.175,1) 0.2s forwards';
+    }
+
+    // --- Smooth Panel Transitions (basic setup) ---
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.classList.add('panel-transition');
+      setTimeout(() => {
+        mainContent.classList.add('panel-visible');
+      }, 50);
+    }
   }
 
   // --- Prevent default form submission for all forms ---
