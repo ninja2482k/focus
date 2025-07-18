@@ -1680,3 +1680,35 @@ animation: cellAppear 0.5s ease forwards;
   60% { transform: scale(1.1) rotate(4deg); opacity: 1; }
   100% { transform: scale(1) rotate(0); opacity: 1; }
 }
+
+/* ===== ADVANCED FEATURES ===== */
+
+/* Smooth Scrolling (native) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hardware Acceleration for animated elements */
+.slide-in-left, .logo-slide-in, .form-fade, .settings-panel, .nav-item, .cell, .profile-photo, .upload-photo-btn {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+For custom scroll easing beyond CSS, use JS like:
+window.scrollTo({ top: y, behavior: 'smooth' });
+// For advanced easing, use a JS library (e.g. GSAP, anime.js) or custom requestAnimationFrame logic.
+*/
