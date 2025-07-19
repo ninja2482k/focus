@@ -7,12 +7,20 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   const formToggle = document.querySelector('.form-toggle');
 
   if (loginToggle && signupToggle && loginForm && signupForm && formToggle) {
+    function animateFormShow(form) {
+      form.classList.remove('form-fade');
+      // Force reflow to restart animation
+      void form.offsetWidth;
+      form.classList.add('form-fade');
+    }
+
     loginToggle.addEventListener('click', () => {
       loginToggle.classList.add('active');
       signupToggle.classList.remove('active');
       loginForm.classList.remove('hidden');
       signupForm.classList.add('hidden');
       formToggle.classList.remove('signup-active');
+      animateFormShow(loginForm);
     });
 
     signupToggle.addEventListener('click', () => {
@@ -21,7 +29,10 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
       signupForm.classList.remove('hidden');
       loginForm.classList.add('hidden');
       formToggle.classList.add('signup-active');
+      animateFormShow(signupForm);
     });
+    // Initial animation for login form
+    animateFormShow(loginForm);
   }
 }
 
@@ -140,7 +151,7 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   });
 })();
 
-// --- Motivation Quote Randomizer ---
+// --- Motivation Quote Randomizer + Typewriter Effect ---
 document.addEventListener('DOMContentLoaded', function() {
   // Dynamic EXP Bar for Dashboard
   if (window.location.pathname.endsWith('dashboard.html')) {
@@ -152,21 +163,75 @@ document.addEventListener('DOMContentLoaded', function() {
     const label = document.querySelector('.expbar-label');
     if (fill) fill.style.width = percent + '%';
     if (label) label.textContent = `${currentXP}/${maxXP} XP`;
-  }
-  const quotes = [
-    "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
-    "The only way to do great work is to love what you do. – Steve Jobs",
-    "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
-    "Believe you can and you’re halfway there. – Theodore Roosevelt",
-    "It always seems impossible until it’s done. – Nelson Mandela",
-    "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
-    "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
-    "Dream big and dare to fail. – Norman Vaughan"
-  ];
-  const quoteEl = document.getElementById('motivation-quote');
-  if (quoteEl) {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteEl.textContent = quotes[randomIndex];
+
+    // --- Level Counter Animation ---
+    const levelNumberEl = document.querySelector('.level-number');
+    if (levelNumberEl) {
+      const targetLevel = parseInt(levelNumberEl.textContent, 10) || 1;
+      let current = 0;
+      levelNumberEl.textContent = '0';
+      const duration = 900; // ms
+      const stepTime = Math.max(20, Math.floor(duration / targetLevel));
+      function animateLevel() {
+        if (current < targetLevel) {
+          current++;
+          levelNumberEl.textContent = current;
+          setTimeout(animateLevel, stepTime);
+        } else {
+          levelNumberEl.textContent = targetLevel;
+        }
+      }
+      animateLevel();
+    }
+
+    // --- Typewriter effect for motivation quote ---
+    const quotes = [
+      "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+      "Believe you can and you’re halfway there. – Theodore Roosevelt",
+      "It always seems impossible until it’s done. – Nelson Mandela",
+      "Start where you are. Use what you have. Do what you can. – Arthur Ashe",
+      "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
+      "Dream big and dare to fail. – Norman Vaughan"
+    ];
+    const quoteEl = document.getElementById('motivation-quote');
+    if (quoteEl) {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const quote = quotes[randomIndex];
+      quoteEl.textContent = '';
+      quoteEl.classList.add('typewriter');
+      let i = 0;
+      function typeWriter() {
+        if (i < quote.length) {
+          quoteEl.textContent += quote.charAt(i);
+          i++;
+          setTimeout(typeWriter, 28);
+        } else {
+          quoteEl.classList.remove('typewriter'); // Remove cursor after typing
+        }
+      }
+      typeWriter();
+    }
+
+    // --- Logo slide-in (ensure re-animation on reload) ---
+    const logo = document.querySelector('.logo.dashboard-logo');
+    if (logo) {
+      logo.style.opacity = '0';
+      logo.style.transform = 'translateX(-60px)';
+      // Force reflow to restart animation if needed
+      void logo.offsetWidth;
+      logo.style.animation = 'logoSlideIn 1s cubic-bezier(0.77,0,0.175,1) 0.2s forwards';
+    }
+
+    // --- Smooth Panel Transitions (basic setup) ---
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.classList.add('panel-transition');
+      setTimeout(() => {
+        mainContent.classList.add('panel-visible');
+      }, 50);
+    }
   }
 
   // --- Prevent default form submission for all forms ---
@@ -214,6 +279,67 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Settings Page Functionality ---
   const masterVolumeSlider = document.getElementById('master-volume');
   const volumeValue = document.querySelector('.volume-value');
+
+  // Animate sidebar nav items on load
+  if (window.location.pathname.endsWith('settings.html')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sidebar nav staggered animation
+      const navItems = document.querySelectorAll('.settings-nav .nav-item');
+      navItems.forEach((item, i) => {
+        item.style.opacity = '0';
+        setTimeout(() => {
+          item.style.opacity = '';
+          item.classList.remove('nav-animated');
+          void item.offsetWidth;
+          item.classList.add('nav-animated');
+        }, 80 + i * 80);
+      });
+      // Animate form elements in active panel
+      function animatePanel(panel) {
+        const elems = panel.querySelectorAll('.setting-item, .settings-input, .checkbox-label, .upload-photo-btn');
+        elems.forEach((el, i) => {
+          el.style.opacity = '0';
+          el.classList.remove('form-animated');
+          setTimeout(() => {
+            el.style.opacity = '';
+            void el.offsetWidth;
+            el.classList.add('form-animated');
+          }, 100 + i * 60);
+        });
+      }
+      // Animate initial panel
+      const activePanel = document.querySelector('.settings-panel.active');
+      if (activePanel) animatePanel(activePanel);
+      // Animate on panel switch
+      const navs = document.querySelectorAll('.nav-item');
+      const panels = document.querySelectorAll('.settings-panel');
+      navs.forEach(nav => {
+        nav.addEventListener('click', function() {
+          setTimeout(() => {
+            const active = document.querySelector('.settings-panel.active');
+            if (active) animatePanel(active);
+          }, 10);
+        });
+      });
+      // Profile photo glow on hover
+      const photo = document.getElementById('profile-photo-preview');
+      if (photo) {
+        photo.addEventListener('mouseenter', () => photo.classList.add('glow'));
+        photo.addEventListener('mouseleave', () => photo.classList.remove('glow'));
+      }
+      // Profile photo upload animation
+      const photoInput = document.getElementById('profile-photo-input');
+      if (photoInput && photo) {
+        photoInput.addEventListener('change', function(e) {
+          setTimeout(() => {
+            photo.classList.remove('upload-anim');
+            void photo.offsetWidth;
+            photo.classList.add('upload-anim');
+          }, 100);
+        });
+      }
+    });
+  }
 
   // Helper: Get all settings values from the form
   function getSettingsFromForm() {
