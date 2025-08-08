@@ -120,24 +120,10 @@ Refer to the [Code of Conduct](https://github.com/ninja2482k/focus/blob/main/COD
 
 ---
 
-## 🧩 Project Overview & Idea Phase
+## 🧩 Idea Phase
 
-This section documents the early ideation and planning that shaped this project.
+<p align="center"> <img src="docs/app%20ideas%20mind%20map.png" width="350" alt="Idea Map Overview"/> <img src="docs/user%20web%20flow.png" width="350" alt="User Interaction Flow"/> </p> <p align="center"> <b>Left:</b> Idea Map Overview | <b>Right:</b> User Interaction Flow </p> <br> <p align="center"> <img src="docs/project%20overview.png" width="350" alt="Project Overview"/> <img src="docs/tool%20used.png" width="350" alt="Tools Used"/> </p> <p align="center"> <b>Left:</b> Project Overview | <b>Right:</b> Tools Used </p>
 
-### 📋 Objective
-Help users develop discipline and stay focused through gamified productivity tools that feel rewarding and visually satisfying.
-
-### 🎯 Target Audience
-- Students trying to improve study consistency
-- Freelancers and remote workers
-- Anyone struggling with procrastination
-
-### 📌 Planning Artifacts
-
-![Idea Map Overview](docs/app%20ideas%20mind%20map.png)
-![User Interaction Flow](docs/user%20web%20flow.png)
-![Project overview ](docs/project%20overview.png)
-![Tool used](docs/tool%20used.png)
 ---
 
 ## 📚 Additional Documentation
