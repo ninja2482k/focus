@@ -138,8 +138,6 @@ Help users develop discipline and stay focused through gamified productivity too
 ![User Interaction Flow](docs/user%20web%20flow.png)
 ![Project overview ](docs/project%20overview.png)
 ![Tool used](docs/tool%20used.png)
-
-
 ---
 
 ## 📚 Additional Documentation
