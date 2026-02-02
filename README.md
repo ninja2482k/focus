@@ -26,8 +26,7 @@ focus/
 ├── reset-password.html      # Placeholder for resetting a user’s password via a secure link or token (future use)
 ├── script.js                # Core logic for the Pomodoro timer, session transitions, XP tracking, and UI updates
 ├── style.css                # Main stylesheet: handles layout, color themes, responsiveness, and animations
-├── read.md                  # this is the read file where you could read about the documentation
-└── docs/                    # This has all of the document images for the read file 
+└── docs/                    # Documentation images used in the README
 ```
 
 ---

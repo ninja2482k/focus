@@ -151,6 +151,17 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
   });
 })();
 
+function readSavedSettings() {
+  const savedSettings = localStorage.getItem('userSettings');
+  if (!savedSettings) return null;
+  try {
+    return JSON.parse(savedSettings);
+  } catch (error) {
+    console.warn('Unable to parse saved settings.', error);
+    return null;
+  }
+}
+
 // --- Motivation Quote Randomizer + Typewriter Effect ---
 document.addEventListener('DOMContentLoaded', function() {
   // Dynamic EXP Bar for Dashboard
@@ -406,11 +417,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // On DOMContentLoaded, load settings from localStorage
   if (window.location.pathname.endsWith('settings.html')) {
     document.addEventListener('DOMContentLoaded', function() {
-      const savedSettings = localStorage.getItem('userSettings');
+      const savedSettings = readSavedSettings();
       if (savedSettings) {
-        try {
-          setSettingsToForm(JSON.parse(savedSettings));
-        } catch (e) {}
+        setSettingsToForm(savedSettings);
       }
     });
   }
@@ -451,6 +460,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Save all settings to localStorage
         const settings = getSettingsFromForm();
         localStorage.setItem('userSettings', JSON.stringify(settings));
+        if (settings.profilePhoto) {
+          localStorage.setItem('profilePhoto', settings.profilePhoto);
+        }
         alert('Settings saved successfully!');
       });
     }
@@ -459,9 +471,9 @@ document.addEventListener('DOMContentLoaded', function() {
       cancelButton.addEventListener('click', function(e) {
         e.preventDefault();
         // Reset form to saved values
-        const savedSettings = localStorage.getItem('userSettings');
+        const savedSettings = readSavedSettings();
         if (savedSettings) {
-          setSettingsToForm(JSON.parse(savedSettings));
+          setSettingsToForm(savedSettings);
         }
         alert('Changes cancelled.');
       });
@@ -498,12 +510,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const photoPreview = document.getElementById('profile-photo-preview');
     const uploadBtn = document.getElementById('upload-photo-btn');
     // Load photo from settings, not localStorage directly
-    const savedSettings = localStorage.getItem('userSettings');
+    const savedSettings = readSavedSettings();
     if (savedSettings && photoPreview) {
-      try {
-        const settings = JSON.parse(savedSettings);
-        if (settings.profilePhoto) photoPreview.src = settings.profilePhoto;
-      } catch (e) {}
+      if (savedSettings.profilePhoto) photoPreview.src = savedSettings.profilePhoto;
     }
     if (uploadBtn && photoInput && photoPreview) {
       uploadBtn.addEventListener('click', function() {
@@ -563,7 +572,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const dashboardPhoto = document.getElementById('dashboard-profile-photo');
-  const savedPhoto = localStorage.getItem('profilePhoto');
+  const savedSettings = readSavedSettings();
+  const savedPhoto = savedSettings?.profilePhoto || localStorage.getItem('profilePhoto');
   if (dashboardPhoto && savedPhoto) {
     dashboardPhoto.src = savedPhoto;
   }
