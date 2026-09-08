@@ -14,11 +14,8 @@
                 <img src="components/logoicon.png" alt="Logo" class="logo dashboard-logo">
                 <span class="welcome">Settings</span>
             </div>
-            <div class="navbar-right">
-                <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
-            </div>
+            <div class="navbar-right"><a href="dashboard.html" class="back-btn">← Back to Dashboard</a></div>
         </nav>
-        
         <main class="main-content">
             <div class="settings-layout">
                 <div class="settings-sidebar">
@@ -47,15 +44,7 @@
                             <div class="setting-item"><label for="username">Username</label><input type="text" id="username" value="JohnDoe" class="settings-input"></div>
                             <div class="setting-item"><label for="email">Email</label><input type="email" id="email" value="john@example.com" class="settings-input"></div>
                             <div class="setting-item"><label for="bio">Bio</label><textarea id="bio" class="settings-input" rows="3" placeholder="Tell us about yourself...">Productivity enthusiast and goal achiever</textarea></div>
-                            <div class="setting-item">
-                                <label for="timezone">Timezone</label>
-                                <select id="timezone" class="settings-input">
-                                    <option value="UTC-8">Pacific Time (UTC-8)</option>
-                                    <option value="UTC-5">Eastern Time (UTC-5)</option>
-                                    <option value="UTC+0">UTC</option>
-                                    <option value="UTC+1">Central European Time (UTC+1)</option>
-                                </select>
-                            </div>
+                            <div class="setting-item"><label for="timezone">Timezone</label><select id="timezone" class="settings-input"><option value="UTC-8">Pacific Time (UTC-8)</option><option value="UTC-5">Eastern Time (UTC-5)</option><option value="UTC+0">UTC</option><option value="UTC+1">Central European Time (UTC+1)</option></select></div>
                         </div>
                     </div>
 
@@ -121,5 +110,6 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script src="security-fixes.js"></script>
 </body>
 </html>
